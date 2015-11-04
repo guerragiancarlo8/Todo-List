@@ -1,5 +1,6 @@
 require 'date'
 require 'rspec'
+require_relative 'task.rb'
 
 class TodoList
 	attr_reader :tasks, :user
@@ -17,7 +18,11 @@ class TodoList
 
 	def delete_task task_id
 
-    @tasks.delete_if {|x| x == task_id.to_i}
+    @tasks.each do |x|
+      if x.id == task_id.to_i
+        @tasks.delete(x)
+      end
+    end
     true
 	end
 
@@ -35,6 +40,3 @@ end
 
 
 
-
-#todo_list.load_tasks
-#puts todo_list.tasks.length

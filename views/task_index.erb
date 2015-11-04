@@ -2,4 +2,21 @@
 
 <h3> Tasks: </h3>
 
-<%=
+
+<%@todo_list.tasks.each do |x| %>
+	
+	<%if x.complete?%>
+		<form action = "/delete_task/<%=x.id%>" method = "post">
+			<button style = "color:green; border:2px solid black;" type="submit"><%=x.content%></button>
+		</form>
+		<br>
+	<%else%>
+		<form action = "/complete_task/<%=x.id%>" method = "post">
+			<button style = "color:red;" type = "submit"><%=x.content%></button>
+		</form>
+		<br>
+	<%end%>
+
+<%end%>
+
+<a href = "/new_task"> Add New Task </a>
